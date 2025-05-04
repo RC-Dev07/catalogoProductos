@@ -1,0 +1,19 @@
+<mat-card class="h-100 d-flex flex-column text-center shadow-sm overflow-hidden">
+    <div class="d-flex align-items-center justify-content-center bg-product p-2 h-img">
+        <img [src]="product.image" [alt]="product.title" class="img-fluid img-card">
+    </div>
+
+    <mat-card-content class="flex-grow-1 p-3">
+        <h6 class="mat-h4 product-title">{{ product.title }}</h6>
+        <p class="mat-body-2 text-secondary fw-bold my-2">
+            Bs. {{ product.price.toFixed(2) }}
+        </p>
+    </mat-card-content>
+
+    <mat-card-actions class="p-3 pt-0">
+        <button mat-raised-button color="primary" class="w-100" aria-label="Agregar al carrito" (click)="onAddToCart()">
+            <mat-icon>add_shopping_cart</mat-icon>
+            Agregar
+        </button>
+    </mat-card-actions>
+</mat-card>

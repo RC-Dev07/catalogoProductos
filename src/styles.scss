@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --color-primary: #1e3a8a; /* Azul profundo */
+  --color-secondary: #f97316; /* Naranja moderno */
+  --color-background: #f9fafb; /* Fondo claro */
+  --color-text: #1f2937; /* Gris oscuro */
+  --color-subtext: #6b7280; /* Gris medio */
+  --color-success: #10b981; /* Verde vivo */
+  --color-error: #ef4444; /* Rojo alerta */
+  --color-offer: #fde047; /* Amarillo */
+}

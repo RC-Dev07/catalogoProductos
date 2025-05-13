@@ -1,0 +1,207 @@
+<div class="my-4 container">
+    <div class="row g-4">
+        <div class="col-7">
+            <form [formGroup]="formEnvio">
+                <mat-card class="mb-4 bg-white custom-shadow">
+                    <mat-card-header class="py-3 px-4">
+                        <mat-card-title class="d-flex align-items-center gap-2">
+                            <div class="section-number">
+                                1
+                            </div>
+                            <span class="fs-5">Información del cliente</span>
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-divider class="bg-divider" />
+
+                    <mat-card-content class="p-4">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="mat-subtitle-2 f-w-500 b-2 d-block">Nombre</label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="text" formControlName="nombre" matInput placeholder="Ej: Juan"
+                                            maxlength="50" />
+
+                                        @if (formEnvio.get('nombre')?.hasError('required')) {
+                                        <mat-error>El nombre es obligatorio.</mat-error>
+                                        }
+                                        @if (formEnvio.get('nombre')?.hasError('minlength')) {
+                                        <mat-error>Debe tener al menos 2 caracteres.</mat-error>
+                                        }
+                                        @if (formEnvio.get('nombre')?.hasError('maxlength')) {
+                                        <mat-error>No debe superar los 50 caracteres.</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="mat-subtitle-2 f-w-500 b-2 d-block">Apellidos</label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="text" formControlName="apellidos" matInput
+                                            placeholder="Ej: Pérez López" maxlength="50" />
+
+                                        @if (formEnvio.get('apellidos')?.hasError('required')) {
+                                        <mat-error>Los apellidos son obligatorios.</mat-error>
+                                        }
+                                        @if (formEnvio.get('apellidos')?.hasError('minlength')) {
+                                        <mat-error>Debe tener al menos 2 caracteres.</mat-error>
+                                        }
+                                        @if (formEnvio.get('apellidos')?.hasError('maxlength')) {
+                                        <mat-error>No debe superar los 50 caracteres.</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="mat-subtitle-2 f-w-500 b-2 d-block">Correo Electrónico</label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="email" formControlName="correo" matInput
+                                            placeholder="Ej: juan.perez@email.com" maxlength="100" />
+
+                                        @if (formEnvio.get('correo')?.hasError('required')) {
+                                        <mat-error>El correo es obligatorio.</mat-error>
+                                        }
+                                        @if (formEnvio.get('correo')?.hasError('email')) {
+                                        <mat-error>Debe tener un formato de correo.</mat-error>
+                                        }
+                                        @if (formEnvio.get('correo')?.hasError('maxlength')) {
+                                        <mat-error>No debe superar los 100 caracteres.</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="mat-subtitle-2 f-w-500 b-2 d-block">Nro. de Celular</label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="tel" formControlName="celular" matInput placeholder="Ej: 71234567"
+                                            maxlength="15" />
+
+                                        @if (formEnvio.get('celular')?.hasError('required')) {
+                                        <mat-error>El número de celular es obligatorio.</mat-error>
+                                        }
+                                        @if (formEnvio.get('celular')?.hasError('minlength')) {
+                                        <mat-error>Debe tener al menos 7 dígitos.</mat-error>
+                                        }
+                                        @if (formEnvio.get('celular')?.hasError('maxlength')) {
+                                        <mat-error>No debe superar los 15 dígitos.</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="bg-white custom-shadow">
+                    <mat-card-header class="py-3 px-4">
+                        <mat-card-title class="d-flex align-items-center gap-2">
+                            <div class="section-number">
+                                2
+                            </div>
+                            <span class="fs-5">Dirección de Envio</span>
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-divider class="bg-divider" />
+
+                    <mat-card-content class="p-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="mat-subtitle-2 f-w-500 b-2 d-block">Calle o Avenida y número</label>
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input type="text" formControlName="direccion" matInput
+                                        placeholder="Ej: Av. Mariscal Santa Cruz N° 123" maxlength="100" />
+
+                                    @if (formEnvio.get('direccion')?.hasError('required')) {
+                                    <mat-error>La dirección es obligatoria.</mat-error>
+                                    }
+                                    @if (formEnvio.get('direccion')?.hasError('maxlength')) {
+                                    <mat-error>Máximo 100 caracteres permitidos.</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="mat-subtitle-2 f-w-500 b-2 d-block">Zona o Barrio</label>
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input type="text" formControlName="zona" matInput placeholder="Ej: Miraflores"
+                                        maxlength="50" />
+
+                                    @if (formEnvio.get('zona')?.hasError('required')) {
+                                    <mat-error>La zona o barrio es obligatorio.</mat-error>
+                                    }
+                                    @if (formEnvio.get('zona')?.hasError('maxlength')) {
+                                    <mat-error>Máximo 50 caracteres permitidos.</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="mat-subtitle-2 f-w-500 b-2 d-block">Ciudad</label>
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input type="text" formControlName="ciudad" matInput placeholder="Ej: La Paz"
+                                        maxlength="50" />
+
+                                    @if (formEnvio.get('ciudad')?.hasError('required')) {
+                                    <mat-error>La ciudad es obligatoria.</mat-error>
+                                    }
+                                    @if (formEnvio.get('ciudad')?.hasError('maxlength')) {
+                                    <mat-error>Máximo 50 caracteres permitidos.</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+
+        <div class="col-5">
+            <mat-card class="bg-white custom-shadow">
+                <mat-card-header class="py-3 px-4">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <span class="fs-5">Resumen del pedido</span>
+                        <span class="fs-6 text-muted">1 productos</span>
+                    </div>
+                </mat-card-header>
+
+                <mat-divider class="bg-divider" />
+
+                <mat-card-content class="p-4">
+                    <div class="d-flex mb-3">
+                        <!-- <img src="https://via.placeholder.com/60" class="rounded me-3" alt="Producto" /> -->
+                        <div>
+                            <div class="fw-semibold">Lorem Ipsum Dolor</div>
+                            <div class="text-muted small">Color: Negro | Talla: M</div>
+                            <div class="fw-semibold">1 × $89.99</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total parcial</span>
+                        <span>Bs. 209.97</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Envío</span>
+                        <span>Bs. 9.99</span>
+                    </div>
+
+                    <div class="dashed-divider"></div>
+
+                    <div class="d-flex justify-content-between fs-5 fw-semibold mx-3">
+                        <span class="fs-5">Total</span>
+                        <span class="fs-5">Bs. 240.96</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="m-4 text-center">
+        <button (click)="enviarPedido()" mat-flat-button color="primary">
+            <mat-icon class="me-1">check_circle</mat-icon>
+            Realizar Pedido
+        </button>
+    </div>
+</div>

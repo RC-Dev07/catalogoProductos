@@ -1,0 +1,30 @@
+.custom-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #0077b6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.bg-divider {
+  border-color: #49505769;
+}
+
+.dashed-divider {
+  border-top: 1px dashed rgba(0, 0, 0, 0.12); /* color similar al mat-divider */
+  margin: 1rem 0;
+}
+
+.f-w-500 {
+  font-weight: 500;
+}

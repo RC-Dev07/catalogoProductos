@@ -1,9 +1,6 @@
-<div class="d-flex justify-content-end mt-4">
-    <app-cart />
-</div>
-<div class="my-4">
+<div class="my-4 container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-        @for (product of products; track $index) {
+        @for (product of filteredProducts; track $index) {
         <div class="col">
             <product-card [product]="product" (addToCart)="handleAddToCart($event)">
             </product-card>

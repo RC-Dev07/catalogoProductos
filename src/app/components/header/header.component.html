@@ -1,0 +1,13 @@
+<mat-toolbar class="d-flex justify-content-between">
+
+    <img src="assets/img/logo.png" alt="Nova Tienda" class="toolbar-logo" height="230px" width="auto">
+
+    <mat-form-field appearance="outline" class="flex-grow-1" subscriptSizing="dynamic">
+        <input matInput autocomplete="off" type="search" name="search" placeholder="Buscar" (input)="onSearch($event)">
+        <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <app-cart class="px-4"></app-cart>
+</mat-toolbar>

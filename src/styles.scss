@@ -9,13 +9,27 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// Definición de tu paleta de colores
 :root {
-  --color-primary: #1e3a8a; /* Azul profundo */
-  --color-secondary: #f97316; /* Naranja moderno */
-  --color-background: #f9fafb; /* Fondo claro */
-  --color-text: #1f2937; /* Gris oscuro */
-  --color-subtext: #6b7280; /* Gris medio */
-  --color-success: #10b981; /* Verde vivo */
-  --color-error: #ef4444; /* Rojo alerta */
-  --color-offer: #fde047; /* Amarillo */
+  --blue-dark: #03045e; // Azul oscuro (para textos importantes)
+  --blue-primary: #0077b6; // Azul principal (header, botones principales)
+  --blue-light: #00b4d8; // Azul claro (botones secundarios, acentos)
+  --blue-pale: #90e0ef; // Azul pálido (bordes, fondos secundarios)
+  --blue-very-light: #caf0f8; // Azul muy claro (fondo general)
+}
+
+// Sobreescribir variables de Bootstrap con tu paleta
+$primary: var(--blue-primary);
+$secondary: var(--blue-light);
+$light: var(--blue-very-light);
+$dark: var(--blue-dark);
+$info: var(--blue-pale);
+
+// Clases personalizadas de color
+.bg-blue-pale {
+  background-color: var(--blue-pale);
+}
+
+.text-blue-light {
+  color: var(--blue-light);
 }

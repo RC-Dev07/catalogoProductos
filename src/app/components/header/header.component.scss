@@ -1,0 +1,25 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  background-color: #0077b6;
+
+  mat-form-field {
+    background-color: #ffffff;
+    border-radius: 5px !important;
+  }
+
+  mat-form-field input {
+    color: #000;
+  }
+
+  mat-form-field input:focus {
+    border: 1px solid #b64900; /* borde color azul cuando está en foco */
+    outline: none;
+  }
+}
+
+.toolbar-title {
+  color: #ffffff;
+  font-weight: bold;
+}

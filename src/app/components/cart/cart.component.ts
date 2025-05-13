@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { ProductService } from '../../services/product.service';
 import { MaterialModule } from '../../shared/material.module';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-cart',
@@ -9,8 +10,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent {
-  constructor(private cartService: CartService) {}
+export class CartComponent implements OnInit {
+  cartItems: Product[] = [];
+
+  private readonly cartService = inject(ProductService);
+
+  ngOnInit(): void {
+    this.cartItems = this.cartService.getCart();
+  }
 
   getItemsProduct(): number {
     return this.cartService.getTotalItemsCount();

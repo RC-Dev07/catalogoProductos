@@ -1,0 +1,52 @@
+<div class="my-4 container">
+  @if(product) {
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <img [src]="selectedImage" alt="Product" class="img-fluid rounded border mb-3 img-product-cart" />
+  
+        <div class="d-flex gap-2">
+            @for (img of product.images; track $index) {
+              <img
+                   [src]="img"
+                   class="img-thumbnail"
+                   [class.border-primary]="img === selectedImage"
+                   style="width: 64px; height: 64px; object-fit: cover; cursor: pointer;"
+                   (click)="selectedImage = img" />
+            }
+        </div>
+      </div>
+  
+      <div class="col-12 col-md-6">
+        <p class="text-uppercase text-secondary mb-1">Headphones</p>
+        <h3 class="fw-bold">{{ product.title}}</h3>
+  
+        <div class="mb-2">
+          <span class="text-success h4 me-2">Bs. {{ product.price }}</span>
+        </div>
+  
+        <p class="text-muted">{{ product.description }}</p>
+  
+        <div class="d-flex justify-content-start gap-1 align-items-center my-2"> 
+          <mat-icon color="primary">check_circle</mat-icon>
+          <span class="text-success">In Stock</span> 
+          <small class="text-muted">({{ product.stock }} items)</small>
+        </div>
+  
+        <div class="mb-3">
+          <label class="fw-semibold d-block mb-1">Dimensions:</label>
+          <div>
+            <span class="badge bg-primary me-2">Width: {{ product.dimensions.width }} cm</span>
+            <span class="badge bg-primary me-2">Height: {{ product.dimensions.height }} cm</span>
+            <span class="badge bg-primary">Depth: {{ product.dimensions.depth }} cm</span>
+          </div>
+        </div>
+        <div class="d-flex gap-2 mb-3">
+          <button mat-raised-button color="primary" class="w-100" aria-label="Agregar al carrito" (click)="onAddToCart()">
+              <mat-icon>add_shopping_cart</mat-icon>
+              Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

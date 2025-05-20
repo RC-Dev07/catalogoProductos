@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 import { MaterialModule } from '../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../interfaces/product';
@@ -13,7 +13,7 @@ import { Product } from '../../interfaces/product';
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
 
-  private readonly cartService = inject(ProductService);
+  private readonly cartService = inject(CartService);
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCart();

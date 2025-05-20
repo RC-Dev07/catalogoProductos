@@ -1,0 +1,43 @@
+<div class="my-4 container">
+    @if(!isLoading){
+        @if(products.length !== 0){
+            <div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    @for (product of products; track $index) {
+                    <div class="col">
+                        <product-card [product]="product" (addToCart)="handleAddToCart($event)">
+                        </product-card>
+                    </div>
+                    }
+                </div>
+                 <mat-paginator
+                    class="m-4"
+                    [length]="total"
+                    [pageSize]="limit"
+                    [pageSizeOptions]="[8, 10, 20]"
+                    [pageIndex]="currentPage"
+                    (page)="onPageChange($event)">
+                </mat-paginator>
+            </div>
+        }@else{
+           <div class="alert alert-primary text-primary f-w-900" role="alert">
+                No se encontro el producto buscado
+            </div>
+        }
+    }@else{
+         <div class="row justify-content-center">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+      *ngFor="let item of [].constructor(8)">
+      <ngx-skeleton-loader
+        count="1"
+        [theme]="{
+          width: '100%',
+          height: '347px',
+          'border-radius': '8px'
+        }"
+      ></ngx-skeleton-loader>
+    </div>
+  </div>
+    }
+</div>

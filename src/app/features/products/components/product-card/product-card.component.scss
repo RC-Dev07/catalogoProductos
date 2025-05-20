@@ -1,0 +1,18 @@
+.bg-product {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.h-img {
+  height: 200px;
+}
+
+.img-card {
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease !important;  /* Agrega una transición suave */
+}
+
+.img-card:hover {
+  transform: scale(1.1);  /* Aumenta el tamaño de la imagen */
+}

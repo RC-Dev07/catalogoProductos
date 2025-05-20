@@ -14,7 +14,6 @@ mat-toolbar {
   }
 
   mat-form-field input:focus {
-    border: 1px solid #b64900; /* borde color azul cuando está en foco */
     outline: none;
   }
 }
@@ -22,4 +21,8 @@ mat-toolbar {
 .toolbar-title {
   color: #ffffff;
   font-weight: bold;
+}
+
+.toolbar-logo{
+  cursor: pointer;
 }

@@ -1,50 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product, RepuestaProducto } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductService {
-  private readonly STORAGE_KEY = 'cartIems';
-  private cartItems: Product[] = [];
 
-  constructor() {
-    this.loadCartFromStorage();
-  }
+  private http = inject(HttpClient);
+  private baseUrl = 'https://dummyjson.com/products';
 
-  private saveCartToStorage(): void {
-    sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cartItems));
-  }
+   getAll(skip = 0, limit = 10, q = ''): Observable<RepuestaProducto> {
+    let params = new HttpParams()
+      .set('skip', skip)
+      .set('limit', limit);
 
-  private loadCartFromStorage(): void {
-    const storedCart = sessionStorage.getItem(this.STORAGE_KEY);
-    this.cartItems = storedCart ? JSON.parse(storedCart) : [];
-  }
-
-  addCart(product: Product) {
-    const existingItem = this.cartItems.find((item) => item.id === product.id);
-
-    if (existingItem) {
-      existingItem.quantity! += 1;
-    } else {
-      this.cartItems.push({ ...product, quantity: 1 });
+    if (q) {
+      params = params.set('q', q);
     }
-    this.saveCartToStorage();
+    return this.http.get<RepuestaProducto>(`${this.baseUrl}/search`, { params });
   }
 
-  getCart(): Product[] {
-    return [...this.cartItems];
-  }
-
-  getTotalItemsCount(): number {
-    return this.cartItems.reduce(
-      (total, item) => total + (item.quantity || 0),
-      0
-    );
-  }
-
-  clearCart(): void {
-    this.cartItems = [];
-    sessionStorage.removeItem(this.STORAGE_KEY);
-  }
+  getById(id: number): Observable<Product> {
+      return this.http.get<Product>(`${this.baseUrl}/${id}`);
+    }
 }

@@ -1,6 +1,6 @@
 <mat-toolbar class="d-flex justify-content-between">
 
-    <img src="assets/img/logo.png" (click)="productsPage()" [routerLink]="'/'" alt="Nova Tienda" class="toolbar-logo" height="230px" width="auto">
+    <img src="assets/img/logo.png" (click)="productsPage()" [routerLink]="'/'" alt="Nova Tienda" class="toolbar-logo d-none d-md-block" height="230px" width="auto">
 
     <mat-form-field appearance="outline" class="flex-grow-1" subscriptSizing="dynamic">
         <input #searchInput matInput autocomplete="off" type="search" name="search" placeholder="Buscar" (input)="onSearch($event)">

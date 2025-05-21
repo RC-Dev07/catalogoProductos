@@ -4,6 +4,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/product';
 import { CartService } from '../../../services/cart.service';
 import { MaterialModule } from '../../../shared/material.module';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-items',
@@ -15,6 +17,9 @@ export class CartItemsComponent implements OnInit{
 
   private readonly fb = inject(FormBuilder);
   private readonly cartService = inject(CartService);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+
   public products: Product[] = [];
 
 
@@ -55,7 +60,14 @@ export class CartItemsComponent implements OnInit{
   enviarPedido(): void {
     if (this.formEnvio.invalid) return this.formEnvio.markAllAsTouched();
     console.log(this.formEnvio.value);
-    window.alert("Se envio el pedido correctamente")
+    this.toastr.success('¡Pedido enviado con éxito!', 'Éxito', {
+      timeOut: 3000,
+      progressBar: true,
+      closeButton: true
+    });
+    this.formEnvio.reset();
+    this.cartService.clearCart();
+    this.router.navigate(['/']);
   }
 
   increaseQuantity(product:Product):void{

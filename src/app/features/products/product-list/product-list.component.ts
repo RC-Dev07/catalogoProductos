@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Product, RepuestaProducto } from '../../../interfaces/product';
@@ -14,11 +14,13 @@ import { ProductCardComponent } from '../components/product-card/product-card.co
   imports: [MaterialModule, CommonModule, ProductCardComponent, NgxSkeletonLoaderModule ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly searchService = inject(SearchService);
   private readonly productService = inject(ProductService);
+  private readonly cdRef = inject(ChangeDetectorRef);
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
@@ -50,7 +52,8 @@ export class ProductListComponent implements OnInit {
         this.products = resp.products;
         this.total = resp.total;
       }).add(()=>{
-        this.isLoading = false
+        this.isLoading = false;
+        this.cdRef.markForCheck();
       })
   }
   

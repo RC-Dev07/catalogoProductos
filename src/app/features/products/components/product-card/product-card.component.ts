@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../../interfaces/product';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   imports: [MaterialModule, CommonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductCardComponent {
   @Input() product!: Product;

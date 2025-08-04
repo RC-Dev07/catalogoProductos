@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../interfaces/product';
 import { CartService } from '../../../services/cart.service';
@@ -10,7 +10,8 @@ import { MaterialModule } from '../../../shared/material.module';
   selector: 'app-product-details',
   imports: [MaterialModule, CommonModule],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.scss'
+  styleUrl: './product-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailsComponent implements OnInit {
  
@@ -23,23 +24,36 @@ export class ProductDetailsComponent implements OnInit {
   private readonly productService = inject(ProductService);
 
 
-  ngOnInit(): void {
-    const productId = Number(this.route.snapshot.paramMap.get('id'));
-     this.productService.getById(productId).subscribe((product:Product) => {
-      if (product) {
-          this.product = product;
-          this.selectedImage = this.product.images[0];
-          this.sizes = [
-            `Width: ${this.product.dimensions.width} cm`,
-            `Height: ${this.product.dimensions.height} cm`,
-            `Depth: ${this.product.dimensions.depth} cm`
-          ];
-        }
-    });
-  }
+ngOnInit(): void {
+  this.route.data.subscribe(({ product }) => {
+    if (product) {
+      this.product = product;
+      this.selectedImage = product.thumbnail || product.images[0];
+
+      this.preloadImage(this.selectedImage);
+
+      this.sizes = [
+        `Width: ${product.dimensions.width} cm`,
+        `Height: ${product.dimensions.height} cm`,
+        `Depth: ${product.dimensions.depth} cm`
+      ];
+    }
+  });
+}
 
   onAddToCart(): void {
     this.cartService.addCart(this.product);
+  }
+
+  private preloadImage(url: string): void {
+    if (!url) return;
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = url;
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
   }
 }
 

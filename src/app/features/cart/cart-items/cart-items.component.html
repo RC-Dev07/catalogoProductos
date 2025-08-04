@@ -160,7 +160,7 @@
 
         <div class="col-12 col-md-6">
             @if(countProduct <= 0){
-                <div class="alert alert-primary text-primary f-w-900" role="alert">
+                <div class="alert alert-light text-primary f-w-900" role="alert">
                     No se tiene productos agregados al carrito
                 </div>
             } @else {
@@ -179,9 +179,10 @@
                             <div class="row align-items-center mb-3 pb-2" [ngClass]="{'border-bottom': !last}">
                           
                               <div class="col-auto">
-                                <img [src]="product.images[0]"
-                                     [alt]="product.title"
-                                     class="rounded border border-secondary p-2 img-product-cart">
+                                <img [src]="product.thumbnail || product.images[0]"
+                                    loading="lazy" width="84" height="84"
+                                    [alt]="product.title"
+                                    class="rounded border border-secondary p-2 img-product-cart">
                               </div>
                           
                               <div class="col-12 col-md-4">

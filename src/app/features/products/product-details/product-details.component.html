@@ -2,12 +2,24 @@
   @if(product) {
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <img [src]="selectedImage" alt="Product" class="img-fluid rounded border mb-3 img-product-cart" />
-  
+        <img
+          [src]="selectedImage"
+          width="534"
+          height="534"
+          [alt]="product.title"
+          class="img-fluid rounded border mb-3 img-product-cart"
+          fetchpriority="high"
+          decoding="async"
+          loading="eager"
+        />
         <div class="d-flex gap-2">
             @for (img of product.images; track $index) {
               <img
                    [src]="img"
+                  [alt]="product.title + ' vista previa'"
+                   loading="lazy"
+                   width="64"
+                   height="64"
                    class="img-thumbnail"
                    [class.border-primary]="img === selectedImage"
                    style="width: 64px; height: 64px; object-fit: cover; cursor: pointer;"

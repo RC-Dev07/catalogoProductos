@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/product';
 import { CartService } from '../../../services/cart.service';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   imports: [MaterialModule, CommonModule, ReactiveFormsModule],
   templateUrl: './cart-items.component.html',
   styleUrl: './cart-items.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartItemsComponent implements OnInit{
 
@@ -38,7 +39,7 @@ export class CartItemsComponent implements OnInit{
   }
 
   private refreshCart(): void {
-    this.products = this.cartService.getCart();
+    this.products = [...this.cartService.getCart()];
   }
 
   get countProduct():number{

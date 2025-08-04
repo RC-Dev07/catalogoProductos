@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { MaterialModule } from '../../shared/material.module';
 import { CartComponent } from '../cart/cart.component';
@@ -10,6 +10,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
   imports: [MaterialModule, CommonModule, CartComponent, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   @Output() search = new EventEmitter<string>();
